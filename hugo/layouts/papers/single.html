@@ -32,6 +32,11 @@
   <meta property="og:site_name" content="ACL Anthology" />
   <meta property="og:url" content="{{ $paper.url }}" />
   <meta property="og:description" content="{{ $paper.author_string }}. {{ $paper.booktitle }}. {{ $paper.year }}." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@aclanthology" />
+  {{ with $paper.abstract_html }}
+  <meta name="description" content="{{ . }}" />
+  {{ end }}
   <link rel="canonical" href="{{ $paper.url }}" />
 {{ end }}
 
@@ -236,7 +241,7 @@
         {{ end }}
       {{ end }}
       {{ if (or $has_bib $has_xml $has_endf) }}
-      <a class="btn btn-secondary" title="Open dialog for exporting citations" data-toggle="modal" data-target="#citeModal" href="#">
+      <a class="btn btn-secondary" title="Open dialog for exporting citations" data-bs-toggle="modal" data-bs-target="#citeModal" href="#">
         <i class="fas fa-quote-left"></i><span class="pl-2">Cite</span>
       </a>
       {{ end }}
@@ -258,20 +263,20 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="citeModalLabel">Export citation</h5>
-          <button class="close" data-dismiss="modal" aria-label="Close">
+          <button class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <ul class="nav nav-tabs mb-2" id="citeFormats" role="tablist">
             <li class="nav-item">
-              <a class="nav-link {{ if not $has_bib }}disabled{{ else }}active{{ end }}" data-toggle="list" href="#citeBibtex" role="tab" aria-controls="citeBibtex" aria-selected="{{ if $has_bib }}true{{ else }}false{{ end }}">BibTeX</a>
+              <a class="nav-link {{ if not $has_bib }}disabled{{ else }}active{{ end }}" data-bs-toggle="list" href="#citeBibtex" role="tab" aria-controls="citeBibtex" aria-selected="{{ if $has_bib }}true{{ else }}false{{ end }}">BibTeX</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{ if not $has_xml }}disabled{{ end }}" data-toggle="list" href="#citeMods" role="tab" aria-controls="citeMods" aria-selected="false">MODS XML</a>
+              <a class="nav-link {{ if not $has_xml }}disabled{{ end }}" data-bs-toggle="list" href="#citeMods" role="tab" aria-controls="citeMods" aria-selected="false">MODS XML</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{ if not $has_endf }}disabled{{ end }}" data-toggle="list" href="#citeEndnote" role="tab" aria-controls="citeEndnote" aria-selected="false">Endnote</a>
+              <a class="nav-link {{ if not $has_endf }}disabled{{ end }}" data-bs-toggle="list" href="#citeEndnote" role="tab" aria-controls="citeEndnote" aria-selected="false">Endnote</a>
             </li>
           </ul>
 
